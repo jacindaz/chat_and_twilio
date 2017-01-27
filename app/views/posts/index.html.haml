@@ -1,0 +1,10 @@
+%h3 Posts
+
+%p= link_to 'New post', new_post_path
+
+%ul
+  - @posts.each do |post|
+    %li
+      = "#{post.room.name} - #{post.body}"
+      = link_to "(edit | ", edit_post_path(post)
+      = link_to "delete)", post_path(post), method: :delete
