@@ -1,0 +1,5 @@
+%h3= @room.name
+
+%ul
+  - @room.posts.each do |post|
+    %li= post.body

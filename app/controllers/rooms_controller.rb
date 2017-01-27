@@ -3,6 +3,10 @@ class RoomsController < ApplicationController
     @rooms = Room.all
   end
 
+  def show
+    @room = Room.find(params[:id])
+  end
+
   def new
     @room = Room.new
   end
