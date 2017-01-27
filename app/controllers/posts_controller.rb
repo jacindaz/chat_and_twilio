@@ -15,7 +15,7 @@ class PostsController < ApplicationController
       flash[:message] = "Post saved."
       redirect_to posts_path
     else
-      flash[:messagee] = "Post failed to save."
+      flash[:message] = "Post failed to save."
       render new_post_path(@post)
     end
   end
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
       flash[:message] = "Post updated."
       redirect_to posts_path
     else
-      flash[:messagee] = "Post failed to update."
+      flash[:message] = "Post failed to update."
       render edit_post_path(@post)
     end
   end
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
       flash[:message] = "Post deleted."
       redirect_to posts_path
     else
-      flash[:messagee] = "Post failed to delete."
+      flash[:message] = "Post failed to delete."
       render posts_path
     end
   end
