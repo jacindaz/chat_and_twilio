@@ -1,4 +1,7 @@
 %h3 Rooms
 %ul
   - @rooms.each do |room|
-    %li= room.name
+    %li
+      = room.name
+      = link_to "(delete |", room_path(room), method: :delete
+      = link_to " edit)", edit_room_path(room)
