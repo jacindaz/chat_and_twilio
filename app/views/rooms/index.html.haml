@@ -1,4 +1,7 @@
 %h3 Rooms
+
+%p= link_to "Create new room", new_room_path
+
 %ul
   - @rooms.each do |room|
     %li

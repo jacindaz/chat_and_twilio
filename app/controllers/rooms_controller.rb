@@ -9,7 +9,7 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.new(room_params)
-    if @room.create
+    if @room.save
       flash[:message] = "Room saved."
       redirect_to rooms_path
     else
