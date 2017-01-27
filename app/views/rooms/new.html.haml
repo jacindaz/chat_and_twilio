@@ -1,5 +1,6 @@
-= form_for Room.new do |f|
-  = f.label :room
+%h3 Create new room
+= form_for @room do |f|
+  %p Room name
   = f.text_field :name
 
   = f.submit
