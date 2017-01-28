@@ -2,4 +2,4 @@
 
 %ul
   - @room.posts.each do |post|
-    %li= post.body
+    %li= "#{post.body} (#{post.user.username})"
