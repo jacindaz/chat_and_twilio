@@ -14,7 +14,12 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:message] = "Post saved."
-      redirect_to posts_path
+
+      if request.xhr?
+        redirect_to room_path(@post.room)
+      else
+        redirect_to posts_path
+      end
     else
       flash[:message] = "Post failed to save."
       render new_post_path(@post)

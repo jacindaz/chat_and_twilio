@@ -1,5 +1,21 @@
 %h3= @room.name
 
-%ul
+%ul#posts
   - @room.posts.each do |post|
     %li= "#{post.body} (#{post.user.username})"
+
+%hr
+%h3 New post
+= form_for @post, remote: true do |f|
+  %p= f.text_field :body
+  = f.hidden_field :room_id, value: @room.id
+  = f.submit
+
+:javascript
+  $(document).ready( function( {
+    debugger
+    $("#posts").on("ajax:success", (e, data, status, xhr) ->
+      $("#posts").append xhr.responseText
+    ).on "ajax:error", (e, xhr, status, error) ->
+      $("#posts").append "<p>ERROR</p>"
+  }))
