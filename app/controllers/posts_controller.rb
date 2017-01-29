@@ -13,16 +13,17 @@ class PostsController < ApplicationController
     @post.user = current_user
 
     if @post.save
-      flash[:message] = "Post saved."
-
       if request.xhr?
-        redirect_to room_path(@post.room)
+        @room = @post.room
+        render :'rooms/show'
       else
+        flash[:message] = "Post saved."
         redirect_to posts_path
       end
     else
       flash[:message] = "Post failed to save."
-      render new_post_path(@post)
+      @room = @post.room
+      render :'rooms/show'
     end
   end
 
