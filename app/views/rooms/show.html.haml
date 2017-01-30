@@ -15,16 +15,20 @@
   = f.submit
 
 :javascript
-  $('form').on('submit', function(e) {
+  $('form#new_post').on('submit', function(event) {
     event.preventDefault();
 
-    $('.new_post').on("ajax:success",
-      function(e, xhr, status, error) {
+    $.ajax({
+      data: $(this).serialize(),
+      success: function() {
         var post_body = $("#post_body")[0].value;
-        $('#posts').append("<li>" + post_body + "</li>");
-
+        var username = $("#post_username")[0].value;
+        $('#posts').append("<li>" + post_body + " (" + username + ")"+ "</li>");
         $("form").trigger("reset");
-      }).on("ajax:error", function(e, xhr, status, error){
-        $('.form_submit').append("<p>Form submission error</p><ul>" + "<li>error: " + error + "</li>" + "<li>xhr: " + xhr + "</li>" + "<li>e: " + e + "</li>" + "</ul><hr>");
-    })
-  })
+      },
+      error: function(request, errorType, errorMessage) {
+        console.log('Error' + errorType + ' with message: ' + errorMessage);
+        debugger
+      }
+    });
+  });
